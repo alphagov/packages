@@ -11,7 +11,7 @@ fi
 tar zxf $tarball
 cd "apache-solr-$VERSION"
 
-for d in solr webapps; do
+for d in solr webapps etc; do
   mkdir -p installdir/opt/solr-$VERSION/$d
 done
 for d in var/solr/data var/log/solr etc/solr etc/init; do
@@ -30,6 +30,7 @@ script
     -XX:+UseConcMarkSweepGC \\
     -XX:+UseParNewGC \\
     -Dsolr.solr.home=/opt/solr-$VERSION/solr \\
+    -Djava.util.logging.config.file=/opt/solr-$VERSION/etc/logging.properties \\
     -jar /opt/solr-$VERSION/start.jar
 end script
 END
@@ -47,6 +48,13 @@ cat > installdir/opt/solr-$VERSION/solr/solr.xml <<END
    -->
  </cores>
 </solr>
+END
+
+cat > installdir/opt/solr-$VERSION/etc/logging.properties <<END
+.level = INFO
+handlers = java.util.logging.FileHandler
+java.util.logging.FileHandler.formatter = java.util.logging.XMLFormatter
+java.util.logging.FileHandler.pattern = /var/log/solr/solr.log
 END
 
 for f in lib etc webapps start.jar; do
