@@ -53,8 +53,8 @@ END
 cat > installdir/opt/solr-$VERSION/etc/logging.properties <<END
 .level = INFO
 handlers = java.util.logging.FileHandler
-java.util.logging.FileHandler.formatter = java.util.logging.XMLFormatter
 java.util.logging.FileHandler.pattern = /var/log/solr/solr.log
+java.util.logging.FileHandler.level = ALL
 END
 
 for f in lib etc webapps start.jar; do
