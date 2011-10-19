@@ -16,6 +16,7 @@ Origin: Government Digital Service, UK
 Label: GDS Deployment Repository
 Architecture: $arch
 END
+      cp debs/*_$arch.deb $path/ # TODO: Be cleverer about distributions
       dpkg-scanpackages $path /dev/null | gzip -9c > $path/Packages.gz
     done
   done
