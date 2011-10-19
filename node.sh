@@ -18,3 +18,6 @@ fpm -s dir -t deb -n nodejs -v $VERSION -C installdir \
   -d "libssl0.9.8 (>= 0.9.8)" \
   -d "zlib1g (>= 1:1.2.2)" \
   usr/bin usr/lib usr/share/man usr/include
+
+mkdir -p ../../debs
+mv *.deb ../../debs/

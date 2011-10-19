@@ -73,3 +73,6 @@ fpm \
   -a all \
   -d java6-runtime-headless \
   opt/solr-$VERSION var/solr etc/solr etc/init
+
+mkdir -p ../../debs
+mv *.deb ../../debs/
