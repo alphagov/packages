@@ -64,7 +64,7 @@ done
 fpm \
   -s dir \
   -t deb \
-  -n solr \
+  -n gds-solr \
   -v $VERSION \
   -C installdir \
   -a all \
