@@ -1,5 +1,9 @@
 #!/bin/bash
+set -e
 VERSION="0.4.12"
+
+mkdir -p build
+cd build
 
 git clone git://github.com/joyent/node
 cd node

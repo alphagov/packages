@@ -4,6 +4,9 @@ set -e
 VERSION="3.4.0"
 MIRROR="http://apache.mirror.rbftpnetworks.com/lucene/solr"
 
+mkdir -p build
+cd build
+
 tarball="apache-solr-$VERSION.tgz"
 if [ ! -f $tarball ]; then
   curl -O "$MIRROR/$VERSION/$tarball"
