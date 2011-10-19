@@ -15,7 +15,7 @@ tar zxf $tarball
 cd "apache-solr-$VERSION"
 
 for d in solr webapps etc; do
-  mkdir -p installdir/opt/solr-$VERSION/$d
+  mkdir -p installdir/opt/solr/$d
 done
 for d in var/solr/data var/log/solr etc/solr etc/init; do
   mkdir -p installdir/$d
@@ -26,19 +26,19 @@ start on runlevel [2345]
 stop on runlevel [06]
 
 script
-  cd /opt/solr-$VERSION
+  cd /opt/solr
   exec sudo -u solr java \\
     -Xms128M \\
     -Xmx512m \\
     -XX:+UseConcMarkSweepGC \\
     -XX:+UseParNewGC \\
-    -Dsolr.solr.home=/opt/solr-$VERSION/solr \\
-    -Djava.util.logging.config.file=/opt/solr-$VERSION/etc/logging.properties \\
-    -jar /opt/solr-$VERSION/start.jar
+    -Dsolr.solr.home=/opt/solr/solr \\
+    -Djava.util.logging.config.file=/opt/solr/etc/logging.properties \\
+    -jar /opt/solr/start.jar
 end script
 END
 
-cat > installdir/opt/solr-$VERSION/solr/solr.xml <<END
+cat > installdir/opt/solr/solr/solr.xml <<END
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <solr persistent="false">
@@ -46,14 +46,13 @@ cat > installdir/opt/solr-$VERSION/solr/solr.xml <<END
    <!--
      <core name="X" instanceDir="/etc/solr/X">
        <property name="instanceDir" value="/etc/solr/X" />
-       <property name="dataDir" value="/var/solr/data/X" />
      </core>
    -->
  </cores>
 </solr>
 END
 
-cat > installdir/opt/solr-$VERSION/etc/logging.properties <<END
+cat > installdir/opt/solr/etc/logging.properties <<END
 .level = INFO
 handlers = java.util.logging.FileHandler
 java.util.logging.FileHandler.pattern = /var/log/solr/solr.log
@@ -61,7 +60,7 @@ java.util.logging.FileHandler.level = ALL
 END
 
 for f in lib etc webapps start.jar; do
-  cp -R example/$f installdir/opt/solr-$VERSION/
+  cp -R example/$f installdir/opt/solr/
 done
 
 fpm \
@@ -72,7 +71,7 @@ fpm \
   -C installdir \
   -a all \
   -d java6-runtime-headless \
-  opt/solr-$VERSION var/solr etc/solr etc/init
+  opt/solr var/solr etc/solr etc/init
 
 mkdir -p ../../debs
 mv *.deb ../../debs/
