@@ -4,6 +4,7 @@ DISTRIBUTIONS="current"
 COMPONENTS="main"
 ARCHITECTURES="amd64 i386"
 
+rm -rf repo
 mkdir -p repo/pool
 cd repo
 
@@ -25,7 +26,21 @@ END
       dpkg-scanpackages $path /dev/null >  $path/Packages
       dpkg-scanpackages pool  /dev/null >> $path/Packages
       gzip -9c < $path/Packages > $path/Packages.gz
-      rm $path/Packages
     done
   done
+  cat > Release <<END
+Origin: Government Digital Service, UK
+Label: GDS Deployment Repository
+Suite: $dist
+Codename: $dist
+Architectures: $ARCHITECTURES
+Components: $COMPONENTS
+Description: GDS package respository
+END
+  apt-ftparchive release dists/$dist >> Release
+  gpg -abs \
+    --local-user 'Government Digital Service <devops@alphagov.co.uk>' \
+    --output dists/$dist/Release.gpg \
+    Release
+  mv Release dists/$dist/
 done
