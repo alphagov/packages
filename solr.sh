@@ -57,6 +57,7 @@ cat > installdir/opt/solr/etc/logging.properties <<END
 handlers = java.util.logging.FileHandler
 java.util.logging.FileHandler.pattern = /var/log/solr/solr.log
 java.util.logging.FileHandler.level = ALL
+java.util.logging.FileHandler.formatter = java.util.logging.SimpleFormatter
 END
 
 for f in lib etc webapps start.jar; do
