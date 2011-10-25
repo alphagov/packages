@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e -x
+set -e
 VERSION="1.3.0"
 
 mkdir -p build
