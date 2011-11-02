@@ -5,7 +5,9 @@ VERSION="0.4.12"
 mkdir -p build
 cd build
 
-git clone git://github.com/joyent/node
+if [ ! -d node ]; then
+  git clone git://github.com/joyent/node.git
+fi
 cd node
 git checkout v$VERSION
 
