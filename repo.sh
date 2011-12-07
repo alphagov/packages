@@ -1,4 +1,6 @@
 #!/bin/bash
+# Build a repository from the debs in debs/.
+
 set -e
 DISTRIBUTIONS="current"
 COMPONENTS="main"
@@ -6,9 +8,9 @@ ARCHITECTURES="amd64 i386"
 
 rm -rf repo
 mkdir -p repo/pool
-cd repo
+cp debs/*.deb repo/pool/
 
-cp ../debs/*_all.deb pool/
+cd repo
 
 for dist in $DISTRIBUTIONS; do
   for comp in $COMPONENTS; do
@@ -22,9 +24,7 @@ Origin: Government Digital Service, UK
 Label: GDS Deployment Repository
 Architecture: $arch
 END
-      cp ../debs/*_$arch.deb $path/ # TODO: Be cleverer about distributions
-      dpkg-scanpackages $path /dev/null >  $path/Packages
-      dpkg-scanpackages pool  /dev/null >> $path/Packages
+      dpkg-scanpackages -a $arch pool /dev/null > $path/Packages
       gzip -9c < $path/Packages > $path/Packages.gz
     done
   done
