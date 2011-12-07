@@ -1,3 +1,5 @@
 /build
 /repo
 /debs
+s3cfg-gds
+*.asc
