@@ -2,7 +2,7 @@
 set -e
 
 VERSION="1.9.3-p0"
-USER_VERSION="-gds2"
+USER_VERSION="-gds3"
 
 mkdir -p build
 cd build
@@ -18,8 +18,12 @@ cd ruby-${VERSION}
 if [ ! -f 47.diff ]; then
   wget https://github.com/ruby/ruby/pull/47.diff
 fi
+patch -p1 --forward < 47.diff || echo "Already applied"
 
-patch -p1 --forward < 47.diff || echo
+if [ ! -f cumulative_performance.patch ]; then
+  wget https://raw.github.com/gist/1658360/2eee5541435663deddd674617bf26ae645b015bd/cumulative_performance.patch
+fi
+patch -p1 --forward < cumulative_performance.patch || echo "Already applied"
 
 ./configure \
   --prefix=/usr \
