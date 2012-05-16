@@ -14,6 +14,10 @@ repository:
 * `gds.asc` – repository public key
 * `s3cfg-gds` – configuration for `s3cmd`
 
+Note, you will need to import the private key with
+
+    gpg --import privkey.asc
+
 Building a package
 ------------------
 
