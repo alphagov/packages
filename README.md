@@ -30,7 +30,8 @@ Fetching existing files
 
 In order to build the repository, you need a local copy of all debs in `debs/`.
 This script downloads existing debs from S3, without overwriting any files
-already held locally.
+already held locally. Note that the package file must contain the package name,
+the version number and the architecture to be included.
 
 Build the repository
 --------------------
