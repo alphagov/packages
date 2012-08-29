@@ -5,6 +5,8 @@ CLAMDIR=clamav-${VERSION}
 INSTALLDIR=/opt/clamav
 
 mkdir -p build
+mkdir -p build/${CLAMDIR}
+cp clamav/* build/${CLAMDIR}
 cd build
 
 if [ ! -d $CLAMDIR ]; then
@@ -58,13 +60,16 @@ fpm -s dir \
 	-n clamav \
 	-v $VERSION \
 	-C $INSTALLDIR \
-   	-p clamav-VERSION_ARCH.deb \
-   	-d "debconf" \
-   	-d "debconf-2.0" \
-   	-d "adduser" \
-   	-d "ucf" \
-   	-d "logrotate" \
-   	/opt/clamav/bin /opt/clamav/etc /opt/clamav/include /opt/clamav/lib /opt/clamav/sbin /opt/clamav/share
+  --after-install clamav-postinstall \
+  --after-remove clamav-postremove \
+  -p clamav-VERSION_ARCH.deb \
+  -d "debconf (>= 0.5) | debconf-2.0" \
+  -d "libc6 (>= 2.11.1)" \
+  -d "logrotate" \
+  -d "lsb-base (>= 3.2-13)" \
+  -d "ucf" \
+  -d "zlib1g (>= 1:1.1.4)" \
+  /opt/clamav/bin /opt/clamav/etc /opt/clamav/include /opt/clamav/lib /opt/clamav/sbin /opt/clamav/share
 
 mkdir -p ../../debs
 mv *.deb ../../debs/

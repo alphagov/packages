@@ -1,0 +1,83 @@
+#!/bin/bash
+set -e
+
+ucf_cleanup()
+{
+   configfile=$1
+
+  if [ `grep "$configfile" /var/lib/ucf/hashfile | wc -l` -gt 1 ]; then
+    grep -v "$configfile" /var/lib/ucf/hashfile > /var/lib/ucf/hashfile.tmp
+    grep "$configfile" /var/lib/ucf/hashfile | tail -n 1  >> /var/lib/ucf/hashfile.tmp
+    mv /var/lib/ucf/hashfile.tmp /var/lib/ucf/hashfile
+  fi
+}
+
+add_to_ucf()
+{
+  configfile=$1
+  ucffile=$2
+
+  if ! grep -q "$configfile" /var/lib/ucf/hashfile; then
+    md5sum $configfile >> /var/lib/ucf/hashfile
+    cp $configfile $ucffile
+  fi
+}
+
+ucf_upgrade_check()
+{
+  configfile=$1
+  sourcefile=$2
+  ucffile=$3
+
+  if [ -f "$configfile" ]; then
+    add_to_ucf $configfile $ucffile
+    ucf --three-way --debconf-ok "$sourcefile" "$configfile"
+  else
+    [ -d /var/lib/ucf/cache ] || mkdir -p /var/lib/ucf/cache
+    cp $sourcefile $configfile
+    add_to_ucf $configfile $ucffile
+  fi
+}
+
+echo "Creating clam user"
+getent passwd clamav || sudo useradd -U clamav -s /bin/false -d /dev/null
+
+echo "Running postinstall steps for clamAV"
+mkdir -p /var/lib/clamav
+chown clamav /var/lib/clamav
+
+mkdir -p /var/log/clamd
+chown clamav /var/log/clamd
+
+mkdir -p /opt/clamav/share/database
+chown clamav /opt/clamav/share/database
+
+mkdir -p /opt/clamav/share/clamav
+chown clamav /opt/clamav/share/clamav 
+
+echo "Configuring freshclam"
+min=$(( `od -A n -N 2 -l  < /dev/urandom`  %  3600 / 60 ))
+FRESHCLAMCRON=/etc/cron.d/clamav-freshclam
+FRESHCLAMTEMP=/var/lib/clamav/freshclam.cron
+echo "$min */1 * * *    clamav [ -x /opt/clamav/bin/freshclam ] && /opt/clamav/bin/freshclam --quiet >/dev/null" > "$FRESHCLAMTEMP"
+ucf_cleanup "$FRESHCLAMCRON"
+ucf_upgrade_check "$FRESHCLAMCRON" "$FRESHCLAMTEMP" /var/lib/ucf/cache/:etc:cron.d:clamav-freshclam
+rm -f "${FRESHCLAMCRON}.ucf-dist"
+rm -f "$FRESHCLAMTEMP"
+
+echo "Updating clamav database"
+/opt/clamav/bin/freshclam
+
+cat > /etc/init/clamav-daemon.conf << END
+description "ClamAV anti virus daemon"
+start on runlevel [2345]
+stop on runlevel [!2345]
+respawn
+respawn limit 5 30
+expect fork
+
+exec start-stop-daemon --start --chuid clamav:clamav --exec /opt/clamav/sbin/clamd
+END
+
+#start clamav-daemon
+

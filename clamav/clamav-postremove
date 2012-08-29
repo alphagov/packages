@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rm -rf /opt/clamav
+rm -rf /var/lib/clamav
+rm -rf /var/log/clamd
+rm -f /etc/init/clamav-daemon.conf
