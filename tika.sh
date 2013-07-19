@@ -36,6 +36,7 @@ fpm -s dir -t deb -n tika -v $VERSION -C installdir \
   --url http://tika.apache.org/ \
   --description "The Apache Tika toolkit detects and extracts metadata and structured text content from various documents using existing parser libraries." \
   --license "Apache License Version 2.0" \
+  --depends "java7-runtime-headless | java6-runtime-headless | java7-runtime | java6-runtime" \
   usr/bin \
   usr/share
 
