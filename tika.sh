@@ -25,7 +25,7 @@ popd
 # Write shell script
 cat >installdir/usr/bin/tika <<TIKA_SH
 #!/bin/sh
-java -jar /usr/share/tika/${FILENAME} \$*
+java -Xms64m -Xmx1024m -jar /usr/share/tika/${FILENAME} "\$@"
 TIKA_SH
 chmod +x installdir/usr/bin/tika
 
