@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
-VERSION="1.4"
-FILENAME="tika-app-${VERSION}.jar"
+TIKA_VERSION="1.4"
+PACKAGE_VERSION="${TIKA_VERSION}-gds1"
+FILENAME="tika-app-${TIKA_VERSION}.jar"
 URL="http://mirror.ox.ac.uk/sites/rsync.apache.org/tika/$FILENAME"
 SHA1SUM="e91c758149ce9ce799fff184e9bf3aabda394abc"
 
@@ -30,7 +31,7 @@ TIKA_SH
 chmod +x installdir/usr/bin/tika
 
 # Build package
-fpm -s dir -t deb -n tika -v $VERSION -C installdir \
+fpm -s dir -t deb -n tika -v $PACKAGE_VERSION -C installdir \
   -a all \
   -p tika-VERSION_ARCH.deb \
   --url http://tika.apache.org/ \
