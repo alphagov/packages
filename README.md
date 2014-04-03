@@ -1,3 +1,12 @@
+DEPRECATED
+==========
+
+This project and the packages it produced are being deprecated.
+
+If you work at GDS, please see the [opsmanual page on Debian
+Packaging](https://github.gds/pages/gds/opsmanual/infrastructure/debian-packaging.html#deprecated-s3-repo)
+for more information.
+
 GDS apt repository
 ==================
 
