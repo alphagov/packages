@@ -1,0 +1,54 @@
+Package: python-pip
+Version: 1.2.1
+Installed-Size: 514
+Priority: extra
+Section: default
+Maintainer: <vagrant@vm>
+Architecture: all
+Description: pip installs packages. Python packages. An easy_install replacement
+MD5sum: f5c60882dc910cd2a28bba76e0839564
+SHA1: ce95b8915ee4719e4cfcfcc74ee465f525455f23
+SHA256: 704cda10933f7021c088c7c5548de6570ee58bd31d3137e50574c39df52513b9
+Filename: pool/main/p/python-pip/python-pip_1.2.1_all.deb
+Homepage: http://www.pip-installer.org
+License: MIT
+Vendor: none
+Source: 
+Size: 165334
+
+Package: ruby
+Version: 1.9.2-p290
+Priority: extra
+Section: default
+Maintainer: <paul@kurosuke>
+Architecture: amd64
+Description: no description given
+MD5sum: 738220fdd32d04e8e7e6143fdf8cf663
+SHA1: b207734308d137d37b2d8b3ae3a0bf3090dbce94
+SHA256: 98d02ff7656103ea8e81ce8c51c41b747cdf721e04968c95a9fb75aca25c06c5
+Filename: pool/main/r/ruby/ruby-1.9.2-p290_amd64.deb
+Source: 
+Depends: libstdc++6 (>= 4.4.3), libc6 (>= 2.6), libffi5 (>= 3.0.4), libgdbm3 (>= 1.8.3), libncurses5 (>= 5.7), libreadline6 (>= 6.1), libssl0.9.8 (>= 0.9.8), zlib1g (>= 1:1.2.2)
+Standards-Version: 3.9.1
+Homepage: http://nourlgiven.example.com/no/url/given
+Size: 11454018
+
+Package: wget
+Version: 1.14
+Installed-Size: 2158
+Priority: extra
+Section: default
+Maintainer: <vagrant@vm>
+Architecture: amd64
+Description: no description given
+MD5sum: b375bf7045236d806b1127fcf84d4afa
+SHA1: f43826defcf9ef8b4651a9265d68022a0f31e1c8
+SHA256: 7ba6880a5d8fd221469516f109ea7cc7c9bf14c5dea29080060bfa4328f43d51
+Homepage: http://example.com/no-uri-given
+Vendor: vagrant@vm
+Filename: pool/main/w/wget/wget-1.14_amd64.deb
+Size: 792764
+Depends: debhelper (>> 5.0.0), gettext, texinfo, libssl-dev (>= 0.9.8k-7ubuntu4), autotools-dev, libidn11-dev
+License: unknown
+Source: 
+

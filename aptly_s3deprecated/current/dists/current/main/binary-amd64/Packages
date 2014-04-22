@@ -1,0 +1,118 @@
+Package: elasticsearch
+Version: 0.19.8
+Installed-Size: 15302
+Priority: optional
+Section: web
+Maintainer: Nicolas Huray <nicolas.huray@gmail.com>
+Architecture: all
+Description: Open Source, Distributed, RESTful Search Engine
+ ElasticSearch is a distributed RESTful search engine built for the cloud.
+ .
+ Features include:
+ .
+ * Distributed and Highly Available Search Engine.
+  - Each index is fully sharded with a configurable number of shards.
+  - Each shard can have one or more replicas.
+  - Read / Search operations performed on either one of the replica shard.
+ * Multi Tenant with Multi Types.
+  - Support for more than one index.
+  - Support for more than one type per index.
+  - Index level configuration (number of shards, index storage, ...).
+ * Various set of APIs
+  - HTTP RESTful API
+  - Native Java API.
+  - All APIs perform automatic node operation rerouting.
+ * Document oriented
+  - No need for upfront schema definition.
+  - Schema can be defined per type for customization of the indexing process.
+ * Reliable, Asynchronous Write Behind for long term persistency.
+ * (Near) Real Time Search.
+ * Built on top of Lucene
+  - Each shard is a fully functional Lucene index
+  - All the power of Lucene easily exposed through simple configuration / plugins.
+ * Per operation consistency
+  - Single document level operations are atomic, consistent, isolated and durable.
+ * Open Source under Apache 2 License.
+MD5sum: 458354accbd0cbe0e379f4b71198f7c7
+SHA1: 03f2d2261bc04832c79f5d27b3d3cd3700365079
+SHA256: c8e92d5360aa561742e4f54ba0ec9d7709bc0a630035f77841e2f3862e9b20ab
+Source: 
+Depends: java7-runtime-headless | java6-runtime-headless | java7-runtime | java6-runtime
+Homepage: http://www.elasticsearch.org/
+Size: 13351512
+Filename: pool/main/e/elasticsearch/elasticsearch-0.19.8_all.deb
+
+Package: tika
+Version: 1.4-gds1
+Installed-Size: 27684
+Priority: extra
+Section: default
+Maintainer: <vagrant@vm>
+Architecture: all
+Description: The Apache Tika toolkit detects and extracts metadata and structured text content from various documents using existing parser libraries.
+MD5sum: e9c9ea21cabd94c3f4671abd61d30a5e
+SHA1: 94bb19cdb0e2c9be91f2880a974a399a7d5edcdc
+SHA256: 3cc8cedd5ffc69c031acb4cb1e7fc338717f1fb8ffdf27293aa88ab5fd8c053d
+Vendor: vagrant@vm
+Homepage: http://tika.apache.org/
+Size: 25125514
+License: Apache License Version 2.0
+Depends: java7-runtime-headless | java6-runtime-headless | java7-runtime | java6-runtime
+Source: 
+Filename: pool/main/t/tika/tika-1.4-gds1_all.deb
+
+Package: nodejs
+Version: 0.8.2
+Installed-Size: 16831
+Priority: extra
+Section: default
+Maintainer: <sam@dev-sam.gov.uk>
+Architecture: amd64
+Description: no description given
+MD5sum: a9a81ebf8e93bcbf94a74458b15089d0
+SHA1: 5084e594d428ee1d4115291abf3fbc6c2b205501
+SHA256: 2ac63e54f34917b192b329a954b1038086cedfb8b386a9b94929547dfc655fd1
+License: unknown
+Vendor: sam@dev-sam.gov.uk
+Homepage: http://example.com/no-uri-given
+Source: 
+Depends: libc-ares2 (>= 1.7.0), libc6 (>= 2.6), libev3 (>= 1:3.8-1), libgcc1 (>= 1:4.1.1), libssl0.9.8 (>= 0.9.8), libstdc++6 (>= 4.1.1), libv8-2.0.3, zlib1g (>= 1:1.1.4)
+Filename: pool/main/n/nodejs/nodejs-0.8.2_amd64.deb
+Size: 5671780
+
+Package: phantomjs
+Version: 1.3.0
+Priority: extra
+Section: default
+Maintainer: <paul@kurosuke>
+Architecture: amd64
+Description: no description given
+MD5sum: 391c2e1a4107df67edf3d89a479688ca
+SHA1: c3ee3c84975a88f5a604de828d827f0af9cf15ed
+SHA256: a15d29b2487c936e73af5724d319cdb332cdbfefa18cc3e7076c16a2667666d4
+Standards-Version: 3.9.1
+Filename: pool/main/p/phantomjs/phantomjs-1.3.0_amd64.deb
+Homepage: http://nourlgiven.example.com/no/url/given
+Source: 
+Size: 165696
+Depends: libstdc++6 (>= 4.4.3), libc6 (>= 2.6), libssl0.9.8 (>= 0.9.8), zlib1g (>= 1:1.2.2), libqt4-dev, libqt4-webkit, xvfb
+
+Package: statsd
+Version: 0.4.0
+Installed-Size: 216
+Priority: extra
+Section: default
+Maintainer: <z@ubuntu>
+Architecture: amd64
+Description: no description given
+MD5sum: 043a64ba1e6662c6a5cd4633ec2b0a74
+SHA1: 2d483dd23f37309329e9d1419b06b71ac1f9c8e8
+SHA256: aea66c5faf9cc25058b8f8aab4aa2dd8108485139eb42b8da67efcac8ee0939e
+Vendor: z@ubuntu
+Size: 149764
+License: unknown
+Homepage: http://example.com/no-uri-given
+Filename: pool/main/s/statsd/statsd-0.4.0_amd64.deb
+Source: 
+Depends: nodejs
+
